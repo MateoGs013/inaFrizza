@@ -124,18 +124,7 @@ body {
 
 .hero .text-block {
   position: relative;
-  z-index: 1;              /* sobre la img */
-}
-
-
-.hero {
-  position: relative;
-  isolation: isolate;      /* crea un nuevo contenedor de mezcla */
-}
-
-.hero h1 {
-  color: black;            /* arrancamos pintando blanco */
-  mix-blend-mode: difference;
+  z-index: 1;          
 }
 
 
@@ -153,6 +142,7 @@ body {
   width: 35px;
   background-color: #b24e1c;
   display: block;
+  transition: transform 0.4s ease, opacity 0.4s ease;
 }
 
 .span-1 {
@@ -164,6 +154,69 @@ body {
 .span-3 {
   height: 3px;
 }
+
+.hamburger {
+  cursor: pointer;
+  z-index: 200; 
+}
+
+
+
+.hamburger.open span:nth-child(1) {
+  transform: translateY(10px) rotate(45deg);
+}
+.hamburger.open span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.open span:nth-child(3) {
+  transform: translateY(-10px) rotate(-45deg);
+}
+
+.nav-menu {
+  position: fixed;
+  top: 0; right: 0;
+  width: 300px;           /* ajusta al ancho de tu menú */
+  height: 100%;
+  transform: translateX(100%); /* fuera de pantalla */
+  z-index: 100;
+  /* sin transición CSS, porque usaremos la API */
+}
+
+
+
+
+/* 1) Estilos base para el menú fullscreen */
+.nav-menu {
+  position: fixed;
+  top: 0; right: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #DECBA4;       /* el color de fondo que “sale” */
+  transform: translateX(100%);     /* empujado fuera de pantalla a la derecha */
+  transition: transform 0.6s ease; /* controla la velocidad */
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+}
+.nav-menu.open {
+  transform: translateX(0);        /* lo trae de vuelta */
+}
+
+/* Lista dentro del menú: opcionalmente centra y separa */
+.nav-menu ul {
+  list-style: none;
+  text-align: center;
+  padding: 0;
+}
+.nav-menu li {
+  margin: 1rem 0;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
 /*Menu hamburguesa*/
+
+
 
 
